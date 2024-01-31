@@ -3,6 +3,8 @@ const build_facilio = @import("facil.io/build.zig").build_facilio;
 
 pub fn build(b: *std.build.Builder) !void {
     const target = b.standardTargetOptions(.{});
+    if (target.getOsTag() == .windows)
+        @panic("Facil (and Zap) doesn't support Windows, at least not currently. Try targeting Linux and using WSL\n");
     // Standard release options allow the person running `zig build` to select
     // between Debug, ReleaseSafe, ReleaseFast, and ReleaseSmall.
     const optimize = b.standardOptimizeOption(.{});
